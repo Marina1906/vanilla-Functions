@@ -29,5 +29,5 @@ function searchGitHubUser() {
   resultElement.textContent = filteredArray;
 }
 
-const searchButton = document.getElementById('searchButton');
+const searchButton_2 = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchGitHubUser);
