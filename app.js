@@ -2,32 +2,36 @@ function searchGitHubUser() {
   const searchInput = document.getElementById('searchInput').value;
   const resultElement = document.querySelector('.result');
 
-  resultElement.textContent = `Results: ${
-    {
-        "message": "Not Found",
-        "documentation_url": "https://docs.github.com/rest"
-      }
-  }`;
+  resultElement.textContent = `Results: ${{
+    message: 'Not Found',
+    documentation_url: 'https://docs.github.com/rest',
+  }}`;
 }
 
 const searchButton = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchGitHubUser);
-// mock data to filter with the searchInput element value
-const mockArray = ['mile', 'maki', 'sumi', 'maja', 'goran', 'beka']
+const mockArray = ['Dimis','Mile', 'Maki', 'Sumi', 'Maja', 'Goran', 'Beka', 'Tom'];
 
-// called on searchButton click
+
 function searchGitHubUser() {
-  // gets the current value of the searchInput element
   const searchInput = document.getElementById('searchInput').value;
   // result element to show the final filtration result of mock data
   const resultElement = document.querySelector('.card-body');
+  const filteredArray = mockArray.filter(item => item.includes(searchInput));
 
-  let filteredArray = []
-  // TODO: filter the mock array to only include searchInput values
-  // google array.include, array.filter
+  // Clear the previous result
+  resultElement.textContent = '';
 
-  resultElement.textContent = filteredArray;
+  if (filteredArray.length > 0) {
+    filteredArray.forEach(item => {
+      const listItem = document.createElement('li');
+      listItem.textContent = item;
+      resultElement.appendChild(listItem);
+    });
+  } else {
+    resultElement.textContent = 'No matching results found.';
+  }
 }
 
-const searchButton_2 = document.getElementById('searchButton');
+const searchButton1 = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchGitHubUser);
