@@ -10,8 +10,16 @@ function searchGitHubUser() {
 
 const searchButton = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchGitHubUser);
-const mockArray = ['Dimis','Mile', 'Maki', 'Sumi', 'Maja', 'Goran', 'Beka', 'Tom'];
-
+const mockArray = [
+  'Dimis',
+  'Mile',
+  'Maki',
+  'Sumi',
+  'Maja',
+  'Goran',
+  'Beka',
+  'Tom',
+];
 
 function searchGitHubUser() {
   const searchInput = document.getElementById('searchInput').value;
@@ -35,3 +43,47 @@ function searchGitHubUser() {
 
 const searchButton1 = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchGitHubUser);
+
+const fetchGithubUser = async username => {
+  const url = `https://api.github.com/users/${username}`;
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(
+      'There was a problem with the fetch operation:',
+      error.message
+    );
+  }
+};
+
+// Example usage
+fetchGithubUser('mojombo')
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error(
+      'There was a problem with the fetch operation:',
+      error.message
+    );
+  });
+
+// Another example usage
+fetchGithubUser('mojombo')
+  .then(data => {
+    // Handle the data here
+  })
+  .catch(error => {
+    console.error(
+      'There was a problem with the fetch operation:',
+      error.message
+    );
+  });
